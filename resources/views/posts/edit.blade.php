@@ -2,7 +2,7 @@
 
 @section('content')
 
-<a href="/posts/{{$post->id}}" class="btn btn-primary mb-5">Back</a>
+<a href="/dashboard" class="btn btn-primary mb-5">Back</a>
 
 <form class="container" action="{{action('PostsController@update', $post->id)}}" method="POST">
     @method('PUT')

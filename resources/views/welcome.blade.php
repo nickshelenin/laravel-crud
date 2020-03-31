@@ -68,12 +68,12 @@
         @if (Route::has('login'))
         <div class="top-right links">
             @auth
-            <a href="/posts">Home</a>
+            <a href="/posts" class="link">Home</a>
             @else
-            <a href="{{ route('login') }}">Login</a>
+            <a href="{{ route('login') }}" class="link">Login</a>
 
             @if (Route::has('register'))
-            <a href="{{ route('register') }}">Register</a>
+            <a href="{{ route('register') }}" class="link">Register</a>
             @endif
             @endauth
         </div>
@@ -83,7 +83,6 @@
             <div class="title m-b-md">
                 <p class="text-primary">Welcome page</p>
             </div>
-            <a href="/posts" class="link">Home</a>
         </div>
     </div>
 </body>

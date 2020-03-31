@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\DB;
 class PostsController extends Controller
 {
     /**
+     * Return user to login page if he's not logged in.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => [
+            'index',
+            'show',
+        ]]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -46,6 +57,7 @@ class PostsController extends Controller
         $post = new Post();
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        $post->user_id = auth()->user()->id;
         $post->save();
 
         return redirect('/posts');
@@ -92,7 +104,7 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'required',
         ]);
-        
+
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
