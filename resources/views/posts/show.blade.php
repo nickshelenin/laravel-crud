@@ -21,9 +21,12 @@
         </div>
 
         <div class="d-flex">
-            <a href="/posts/{{$post->id}}/edit" class="btn btn-info mr-2">Edit post</a>
-            <form action="" method="POST">
-                <button class="btn btn-danger">Delete post</button>
+            <a href="/posts/{{$post->id}}/edit" class="btn btn-primary mr-2">Edit post</a>
+
+            <form action="{{action('PostsController@destroy', $post->id)}}" method="POST">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-danger">Delete post</button>
             </form>
         </div>
     </div>

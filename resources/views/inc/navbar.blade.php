@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark">
+{{-- <nav class="navbar navbar-dark bg-dark">
     <div class="container">
         <ul>
             <li>
@@ -6,11 +6,61 @@
             </li>
         </ul>
 
-        <div class="" action="createpost.php" method="post">
-            <a href="/posts/create" class="btn btn-info my-2 my-sm-0">Create post</a>
-            <a href="" class="btn btn-danger">Log out</a>
-            <a href="login.php" class="btn btn-success text-white" type="submit" name="create-btn">Log in</a>
-            <a href="signup.php" class="btn btn-success text-white" type="submit" name="create-btn">Sign up</a>
+      
+    </div>
+</nav> --}}
+
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url('/') }}">
+            Laragram
+        </a>
+
+        <a href="/posts">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav mr-auto">
+            </ul>
+
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Authentication Links -->
+                @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                </li>
+                @if (Route::has('register'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+                @endif
+                @else
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->uname }} <span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a href="/posts/create" class="dropdown-item">Create post</a>
+
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+
+                @endguest
+            </ul>
         </div>
     </div>
 </nav>

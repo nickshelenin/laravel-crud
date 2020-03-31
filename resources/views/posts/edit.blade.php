@@ -1,23 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- <form class="container mt-5"  action="{{action('PostsController@store')}}">
-<div class="form-group">
-    <input type="text" class="form-control" placeholder="title" name="title">
-</div>
-<div class="form-group">
-    <textarea class="form-control" name="body" placeholder="body"></textarea>
-</div>
-<button type="submit" class="btn btn-primary">Submit</button>
-</form> --}}
 
-{!! Form::open(['action' => 'PostsController@update', 'method' => 'POST']) !!}
+<a href="/posts/{{$post->id}}" class="btn btn-primary mb-5">Back</a>
+
+<form class="container" action="{{action('PostsController@update', $post->id)}}" method="POST">
+    @method('PUT')
+    @csrf
+
     <div class="form-group">
-        {{Form::text('title', "{{$post->title}}", ['class' => 'form-control', 'placeholder' => 'Title'])}}
+        <input type="text" class="form-control" placeholder="title" name="title" value="{{$post->title}}">
+
+        @error('title')
+        <span class="text-danger" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
     </div>
+
     <div class="form-group">
-        {{Form::textarea('body',"{{$post->body}}", ['class' => 'form-control', 'placeholder' => 'Body '])}}
+        <textarea class="form-control" placeholder="body" name="body">{{$post->body}}</textarea>
+
+        @error('body')
+        <span class="text-danger" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
     </div>
-    {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-{!! Form::close() !!}
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
 @endsection
