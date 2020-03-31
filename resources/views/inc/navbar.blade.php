@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="{{ url('/') }}">
             Laragram
         </a>
-        <a href="/posts">Home</a>
+        <a href="/">Home</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

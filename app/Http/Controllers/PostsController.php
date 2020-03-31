@@ -88,6 +88,10 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
 
+        if (auth()->user()->id !== $post->user_id) {
+            return redirect('/');
+        }
+
         return view('posts.edit', ['post' => $post]);
     }
 
@@ -106,6 +110,11 @@ class PostsController extends Controller
         ]);
 
         $post = Post::find($id);
+
+        if (auth()->user()->id !== $post->user_id) {
+            return redirect('/');
+        }
+
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->save();
@@ -123,6 +132,11 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+
+        if (auth()->user()->id !== $post->user_id) {
+            return redirect('/');
+        }
+
         $post->delete();
 
         return redirect('/posts');
